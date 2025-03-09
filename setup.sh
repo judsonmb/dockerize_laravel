@@ -15,6 +15,14 @@ docker exec -it php bash -c "cd application && php artisan key:generate"
 
 # Executa as migrações do Laravel
 echo "Rodando migrações..."
-docker exec -it php bash -c "php artisan migrate && npm run build"
+docker exec -it php bash -c "php artisan migrate"
+
+# Executa a instalação de dependências do npm
+echo "Rodando migrações..."
+docker exec -it php bash -c "npm install"
+
+# Executa a instalação de dependências do npm
+echo "Rodando build"
+docker exec -it php bash -c "npm run build"
 
 echo "Configuração finalizada!"
