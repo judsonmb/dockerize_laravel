@@ -9,6 +9,14 @@ docker exec -it php bash -c "chown -R www-data:www-data /var/www/html/storage /v
 echo "Criando banco de dados..."
 docker exec -it db bash -c "mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS laravel;'"
 
+# Cria o usuário Laravel com a senha 'password'
+echo "Criando usuário laravel..."
+docker exec -it db bash -c "mysql -uroot -proot -e \"CREATE USER IF NOT EXISTS 'laravel'@'%' IDENTIFIED BY 'password';\""
+
+# Concede permissões ao usuário 'laravel' no banco de dados 'laravel'
+echo "Concedendo permissões ao usuário laravel..."
+docker exec -it db bash -c "mysql -uroot -proot -e \"GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'%';\""
+
 # Gera a chave da aplicação Laravel
 echo "Gerando a chave da aplicação..."
 docker exec -it php bash -c "cd application && php artisan key:generate"
