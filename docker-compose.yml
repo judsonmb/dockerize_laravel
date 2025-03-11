@@ -10,6 +10,7 @@ services:
     volumes:
       - ./application/:/var/www/html/
       - ./logs/nginx:/var/log/nginx/
+      - /etc/letsencrypt:/etc/letsencrypt
     container_name: nginx
 
   php:
