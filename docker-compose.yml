@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: nginx/Dockerfile
     ports: 
-      - "8080:80"
+      - "80:80"
     networks:
       - internal
     volumes:
@@ -41,6 +41,7 @@ services:
       - ./db-data:/var/lib/mysql
     networks:
       - internal
+
 
 networks:
   internal:
